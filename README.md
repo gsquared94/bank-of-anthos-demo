@@ -1,13 +1,11 @@
 # Bank of Anthos
 
-Modified from the original **[Bank of Anthos repo](https://github.com/GoogleCloudPlatform/bank-of-anthos)** which is a sample HTTP-based web app that simulates a bank's payment processing network, allowing users to create artificial bank accounts and complete transactions.
+**Bank of Anthos** is a sample HTTP-based web app that simulates a bank's payment processing network, allowing users to create artificial bank accounts and complete transactions.
 
+This fork modifies the original [Bank of Anthos]((https://github.com/GoogleCloudPlatform/bank-of-anthos)) into a multi-repository microservices design to demonstrate how to integrate with `skaffold`'s multi-config support.
 ## Service Architecture
 
-This repo modifies this into a multi-repository microservices design to demonstrate `skaffold`'s ability to support per-application `skaffold.yaml` configuration file.
-
 ![Architecture Diagram](./docs/architecture.png)
-
 | Service                                          | Language      | Description                                                                                                                                  |
 | ------------------------------------------------ | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | [frontend](https://github.com/gsquared94/bank-of-anthos-frontend)                       | Python        | Exposes an HTTP server to serve the website. Contains login page, signup page, and home page.                                                |
@@ -59,12 +57,24 @@ cd bank-of-anthos
 ```
 git submodule update --init --force --remote
 ```
-5. **Deploy the sample app to the cluster.**
+
+5. **Install skaffold [v1.18.0](https://github.com/GoogleContainerTools/skaffold/releases/tag/v1.18.0) or newer**
+
+* Linux:
+```
+curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.18.0/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
+```
+
+* macOS:
+```
+curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.18.0/skaffold-darwin-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
+```
+6. **Deploy the sample app to the cluster.**
 
 ```
-skaffold run -f final_skaffold.yaml
+skaffold run
 ```
-6. **Iterate on only selected services by passing the `-m` flag.**
+7. **Iterate on only selected services by passing the `-m` flag.**
 ```
-skaffold dev -f final_skaffold.yaml -m frontend -m balancereader
+skaffold dev -m frontend -m balancereader --port-forward
 ```
