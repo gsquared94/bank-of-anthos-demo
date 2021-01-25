@@ -4,7 +4,7 @@ Modified from the original **[Bank of Anthos repo](https://github.com/GoogleClou
 
 ## Service Architecture
 
-This repo modifies this into a multi-repository microservices design.
+This repo modifies this into a multi-repository microservices design to demonstrate `skaffold`'s ability to support per-application `skaffold.yaml` configuration file.
 
 ![Architecture Diagram](./docs/architecture.png)
 
@@ -21,9 +21,9 @@ This repo modifies this into a multi-repository microservices design.
 | [loadgenerator](https://github.com/gsquared94/bank-of-anthos-loadgenerator)             | Python/Locust | Continuously sends requests imitating users to the frontend. Periodically creates new accounts and simulates transactions between them.      |
 
 
-## Quickstart (GKE)
+## Quickstart
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/GoogleCloudPlatform/bank-of-anthos&cloudshell_tutorial=README.md#Quickstart%20(GKE))
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/gsquared94/bank-of-anthos-demo&cloudshell_tutorial=README.md#Quickstart)
 
 
 1. **[Create a Google Cloud Platform project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project)** or use an existing project. Set the `PROJECT_ID` environment variable and ensure the Google Kubernetes Engine API is enabled.
@@ -36,12 +36,12 @@ gcloud services enable container --project ${PROJECT_ID}
 2. **Clone this repository.**
 
 ```
-git clone https://github.com/gsquared/bank-of-anthos.git
+git clone https://github.com/gsquared94/bank-of-anthos-demo.git
 cd bank-of-anthos
 ```
 
-3. **Create a GKE cluster.**
-
+3. **Create a Kubernetes cluster.**   
+* Create a GKE cluster 
 ```
 ZONE=us-central1-b
 gcloud beta container clusters create bank-of-anthos \
@@ -50,9 +50,21 @@ gcloud beta container clusters create bank-of-anthos \
 --enable-stackdriver-kubernetes --subnetwork=default \
 --tags=bank-of-anthos --labels csm=
 ```
+* Alternately, if using the Cloud Shell IDE create a minikube cluster
+```
+minikube start
+```
 
+4. **Clone all submodule projects**
+```
+git submodule update --init --force --remote
+```
 5. **Deploy the sample app to the cluster.**
 
 ```
 skaffold run -f final_skaffold.yaml
+```
+6. **Iterate on only selected services by passing the `-m` flag.**
+```
+skaffold dev -f final_skaffold.yaml -m frontend -m balancereader
 ```
