@@ -1,0 +1,24 @@
+[submodule "accounts-db"]
+	path = accounts-db
+	url = https://github.com/gsquared94/bank-of-anthos-accounts-db
+[submodule "balancereader"]
+	path = balancereader
+	url = https://github.com/gsquared94/bank-of-anthos-balancereader
+[submodule "contacts"]
+	path = contacts
+	url = https://github.com/gsquared94/bank-of-anthos-contacts
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/gsquared94/bank-of-anthos-frontend
+[submodule "ledger-db"]
+	path = ledger-db
+	url = https://github.com/gsquared94/bank-of-anthos-ledger-db
+[submodule "ledgerwriter"]
+	path = ledgerwriter
+	url = https://github.com/gsquared94/bank-of-anthos-ledgerwriter
+[submodule "transactionhistory"]
+	path = transactionhistory
+	url = https://github.com/gsquared94/bank-of-anthos-transactionhistory
+[submodule "userservice"]
+	path = userservice
+	url = https://github.com/gsquared94/bank-of-anthos-userservice
