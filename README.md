@@ -23,7 +23,7 @@ This repo modifies this into a multi-repository microservices design to demonstr
 
 ## Quickstart
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/gsquared94/bank-of-anthos-demo&cloudshell_tutorial=README.md#Quickstart)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/gsquared94/bank-of-anthos-demo&cloudshell_workspace=.&cloudshell_tutorial=README.md#Quickstart)
 
 
 1. **[Create a Google Cloud Platform project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project)** or use an existing project. Set the `PROJECT_ID` environment variable and ensure the Google Kubernetes Engine API is enabled.
@@ -33,14 +33,7 @@ PROJECT_ID=""
 gcloud services enable container --project ${PROJECT_ID}
 ```
 
-2. **Clone this repository.**
-
-```
-git clone https://github.com/gsquared94/bank-of-anthos-demo.git
-cd bank-of-anthos
-```
-
-3. **Create a Kubernetes cluster.**   
+2. **Create a Kubernetes cluster.**   
 * Create a GKE cluster 
 ```
 ZONE=us-central1-b
@@ -53,6 +46,13 @@ gcloud beta container clusters create bank-of-anthos \
 * Alternately, if using the Cloud Shell IDE create a minikube cluster
 ```
 minikube start
+```
+
+3. **Clone this repository.**
+
+```
+git clone https://github.com/gsquared94/bank-of-anthos-demo.git
+cd bank-of-anthos
 ```
 
 4. **Clone all submodule projects**
