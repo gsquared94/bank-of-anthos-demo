@@ -1,6 +1,6 @@
 [submodule "accounts-db"]
 	path = accounts-db
-	url = https://github.com/gsquared94/bank-of-anthos-accounts-db
+	url = https://github.com/gsquared94/bank-of-anthos-accounts
 [submodule "balancereader"]
 	path = balancereader
 	url = https://github.com/gsquared94/bank-of-anthos-balancereader
@@ -22,3 +22,6 @@
 [submodule "userservice"]
 	path = userservice
 	url = https://github.com/gsquared94/bank-of-anthos-userservice
+[submodule "loadgenerator"]
+	path = loadgenerator
+	url = https://github.com/gsquared94/bank-of-anthos-loadgenerator
