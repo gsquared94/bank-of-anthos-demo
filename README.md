@@ -30,7 +30,7 @@ This fork modifies the original [Bank of Anthos]((https://github.com/GoogleCloud
 
 ```
 git clone https://github.com/gsquared94/bank-of-anthos-demo.git
-cd bank-of-anthos
+cd bank-of-anthos-demo
 ```
 
 3. **Clone all submodule projects**
