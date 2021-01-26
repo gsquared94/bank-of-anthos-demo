@@ -19,5 +19,5 @@ metadata:
 deploy:
   kubectl:
     manifests:
-    - ./jwt/*
-    - ./config/*
+    - ./jwt/jwt-secret.yaml
+    - ./config/config.yaml

@@ -2,7 +2,7 @@
 
 **Bank of Anthos** is a sample HTTP-based web app that simulates a bank's payment processing network, allowing users to create artificial bank accounts and complete transactions.
 
-This fork modifies the original [Bank of Anthos]((https://github.com/GoogleCloudPlatform/bank-of-anthos)) into a multi-repository microservices design to demonstrate how to integrate with `skaffold`'s multi-config feature.
+This fork modifies the original [Bank of Anthos](https://github.com/GoogleCloudPlatform/bank-of-anthos) into a multi-repository microservices design to demonstrate how to integrate with `skaffold`'s multi-config feature.
 ## Service Architecture
 
 ![Architecture Diagram](./docs/architecture.png)
@@ -21,8 +21,11 @@ This fork modifies the original [Bank of Anthos]((https://github.com/GoogleCloud
 
 ## Quickstart
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/gsquared94/bank-of-anthos-demo&cloudshell_workspace=.&cloudshell_tutorial=README.md#Quickstart)
+Follow the `Google Cloud Shell` tutorial:
 
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/gsquared94/bank-of-anthos-demo&cloudshell_workspace=.&cloudshell_tutorial=tutorial.md)
+
+Alternately,
 
 1. **Setup a Kubernetes cluster of choice ([GKE](https://cloud.google.com/kubernetes-engine), [minikube](https://minikube.sigs.k8s.io/docs/start/), [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation), etc.)** 
 
@@ -36,7 +39,7 @@ cd bank-of-anthos-demo
 3. **Clone all submodule projects**
 
 ```
-git submodule update --init --force --remote
+git submodule update --init --force --recursive
 ```
 
 4. **Install skaffold [v1.18.0](https://github.com/GoogleContainerTools/skaffold/releases/tag/v1.18.0) or newer**
