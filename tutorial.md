@@ -25,7 +25,7 @@ It consists of multiple microservices with each service code living in its own G
 
 ___
 
-**Time to complete**: <walkthrough-tutorial-duration duration=20></walkthrough-tutorial-duration>
+**Time to complete**: <walkthrough-tutorial-duration duration=15></walkthrough-tutorial-duration>
 
 Click the **Start** button to move to the next step.
 
@@ -76,24 +76,28 @@ The root <walkthrough-editor-open-file filePath="skaffold.yaml">skaffold.yaml</w
 
 Run:
 ```bash
-skaffold dev --port-forward
+skaffold dev --port-forward --tail=false
 ```
 
-Once all images are built and deployed click on the <walkthrough-web-preview-icon></walkthrough-web-preview-icon> icon and select `Change Port` and change the preview port to `4503`. This should redirect to the frontend service and show the running application.
+Once all images are built (might take a while the first time) and deployed (check for streaming log message `"Deployments stabilized in x.xx seconds"`) click on the <walkthrough-web-preview-icon></walkthrough-web-preview-icon> icon and select `Change Port` and change the preview port to `4503`. This should redirect to the frontend service and show the running application.
 
+<walkthrough-footnote>
+    `--port-forward` flag forwards local ports to all service ports.
+    `--tail=false` supresses streaming container logs
+</walkthrough-footnote>
 
 ## Develop only selected services
 
 We can scope each `skaffold` session to only a subset of services by specifying the `-m` or `--module` flag.
 
-Look at the <walkthrough-editor-open-file filePath="docs/architecture.png">architecture diagram</walkthrough-editor-open-file> for the services. The minimal set of services required to test `logging in to an existing user account` are:
+Look at the <walkthrough-editor-open-file filePath="docs/architecture.png">architecture diagram</walkthrough-editor-open-file> for the services. The minimal set of services required to test the feature `"logging in to an existing user account"` are:
 - <walkthrough-editor-open-file filePath="accounts-db/skaffold.yaml">accounts-db</walkthrough-editor-open-file>
 - <walkthrough-editor-open-file filePath="userservice/skaffold.yaml">userservice</walkthrough-editor-open-file>
 - <walkthrough-editor-open-file filePath="frontend/skaffold.yaml">frontend</walkthrough-editor-open-file>
 
 Run:
 ```bash
-skaffold dev -m setup -m frontend -m userservice -m accounts-db --port-forward
+skaffold dev -m setup -m frontend -m userservice -m accounts-db --port-forward --tail=false
 ```
 
 Images should already be available in the `skaffold` cache. Once deployed click on the <walkthrough-web-preview-icon></walkthrough-web-preview-icon> icon and click `Preview on port 4503`. This should redirect to the frontend service and show the running application. You should be able to login to the application and all transactions should fail as we aren't running those services.
