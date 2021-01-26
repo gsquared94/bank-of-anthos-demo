@@ -72,11 +72,11 @@ git submodule update --init --force --recursive
 
 ## Build and deploy all services
 
-The root <walkthrough-editor-open-file filePath="skaffold.yaml">`skaffold.yaml`</walkthrough-editor-open-file> file lists all the services as dependencies using the `requires` stanza. Launching `skaffold` with this configuration will import all the specified dependencies as skaffold artifacts in a single session. Each service repository defines its own `skaffold.yaml` configuration that instructs `skaffold` how to build and deploy it. 
+The root <walkthrough-editor-open-file filePath="skaffold.yaml">skaffold.yaml</walkthrough-editor-open-file> file lists all the services as dependencies using the `requires` stanza. Launching `skaffold` with this configuration will import all the specified dependencies as skaffold artifacts in a single session. Each service repository defines its own `skaffold.yaml` configuration (eg. <walkthrough-editor-open-file filePath="accounts-db/skaffold.yaml">accounts-db/skaffold.yaml</walkthrough-editor-open-file>) that instructs `skaffold` how to build and deploy it. 
 
 Run:
 ```bash
-skaffold run
+skaffold dev --port-forward
 ```
 
 Once all images are built and deployed click on the <walkthrough-web-preview-icon></walkthrough-web-preview-icon> icon and select `Change Port` and change the preview port to `4503`. This should redirect to the frontend service and show the running application.
@@ -84,12 +84,19 @@ Once all images are built and deployed click on the <walkthrough-web-preview-ico
 
 ## Develop only selected services
 
-To iterate on only selected services using `skaffold`'s familiar dev loop, execute `dev` with the `-m` flag specifying the target config name.
+We can scope each `skaffold` session to only a subset of services by specifying the `-m` or `--module` flag.
+
+Look at the <walkthrough-editor-open-file filePath="docs/architecture.png">architecture diagram</walkthrough-editor-open-file> for the services. The minimal set of services required to test `logging in to an existing user account` are:
+- <walkthrough-editor-open-file filePath="accounts-db/skaffold.yaml">accounts-db</walkthrough-editor-open-file>
+- <walkthrough-editor-open-file filePath="userservice/skaffold.yaml">userservice</walkthrough-editor-open-file>
+- <walkthrough-editor-open-file filePath="frontend/skaffold.yaml">frontend</walkthrough-editor-open-file>
 
 Run:
 ```bash
-skaffold dev -m setup -m frontend --portforward
+skaffold dev -m setup -m frontend -m userservice -m accounts-db --port-forward
 ```
+
+Images should already be available in the `skaffold` cache. Once deployed click on the <walkthrough-web-preview-icon></walkthrough-web-preview-icon> icon and click `Preview on port 4503`. This should redirect to the frontend service and show the running application. You should be able to login to the application and all transactions should fail as we aren't running those services.
 
 <walkthrough-footnote>
     The `setup` module needs to be included when running with any other module since it installs some prereq resources. 
@@ -102,4 +109,3 @@ skaffold dev -m setup -m frontend --portforward
 All done!
 
 You now know how to use Skaffold to develop multi-repository applications.
-
