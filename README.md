@@ -2,7 +2,11 @@
 
 **Bank of Anthos** is a sample HTTP-based web app that simulates a bank's payment processing network, allowing users to create artificial bank accounts and complete transactions.
 
-This fork modifies the original [Bank of Anthos](https://github.com/GoogleCloudPlatform/bank-of-anthos) into a multi-repository microservices design to demonstrate how to integrate with `skaffold`'s [config dependencies](https://skaffold.dev/docs/design/config/#configuration-dependencies) feature.
+This fork modifies the original [Bank of Anthos](https://github.com/GoogleCloudPlatform/bank-of-anthos) into a multi-repository microservices design to demonstrate how to integrate with `skaffold`'s [local config dependency](https://skaffold.dev/docs/design/config/#local-config-dependency) feature.
+
+>*For an example on [remote config dependency](https://skaffold.dev/docs/design/config/#remote-config-dependency) look at [this](https://github.com/gsquared94/skaffold-remote-configs-demo) project*
+
+
 ## Service Architecture
 
 ![Architecture Diagram](./docs/architecture.png)
