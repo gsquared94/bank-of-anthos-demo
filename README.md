@@ -2,7 +2,7 @@
 
 **Bank of Anthos** is a sample HTTP-based web app that simulates a bank's payment processing network, allowing users to create artificial bank accounts and complete transactions.
 
-This fork modifies the original [Bank of Anthos](https://github.com/GoogleCloudPlatform/bank-of-anthos) into a multi-repository microservices design to demonstrate how to integrate with `skaffold`'s multi-config feature.
+This fork modifies the original [Bank of Anthos](https://github.com/GoogleCloudPlatform/bank-of-anthos) into a multi-repository microservices design to demonstrate how to integrate with `skaffold`'s [config dependencies](https://skaffold.dev/docs/design/config/#configuration-dependencies) feature.
 ## Service Architecture
 
 ![Architecture Diagram](./docs/architecture.png)
@@ -59,11 +59,11 @@ curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.18.0/skaff
 5. **Deploy the sample app to the cluster.**
 
 ```
-skaffold run
+skaffold run --port-forward
 ```
 
 6. **Iterate on only selected services by passing the `-m` flag.**
 
 ```
-skaffold dev -m frontend -m balancereader --port-forward
+skaffold run -m frontend -m balancereader --port-forward
 ```
